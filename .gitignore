@@ -1,0 +1,5 @@
+.DS_Store
+.venv/
+.claude/
+home-credit-default-risk/
+*.zip
