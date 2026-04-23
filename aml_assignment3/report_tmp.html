@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-3-transformer-is-all-you-need">Assignment 3: Transformer is All You Need</h1>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>This report describes the implementation and analysis of a Tiny Transformer language model trained on the Tiny Shakespeare corpus for next-token prediction. The model was built entirely from scratch using PyTorch, implementing all core components of the Transformer architecture: sinusoidal positional encoding, causal masked self-attention, RMSNorm, feed-forward networks, and residual connections. The goal was to understand the internal mechanics of modern Large Language Models by building and training a minimal version from the ground up.</p>
+<h2 id="2-data-preparation">2. Data Preparation</h2>
+<p><strong>Dataset:</strong> The Tiny Shakespeare corpus (~1.1M characters) consisting of Shakespeare play dialogue with character names, speech, and stage directions.</p>
+<p><strong>Tokenization:</strong> A Byte Pair Encoding (BPE) tokenizer was trained directly on the corpus using the HuggingFace <code>tokenizers</code> library with a vocabulary size of 500. BPE captures meaningful subword units rather than individual characters — frequent words like &quot;speak&quot; become single tokens, while rarer words are split into reusable pieces (e.g., &quot;spoken&quot; → [&quot;sp&quot;, &quot;oken&quot;]). The full text tokenized to <strong>447,512 tokens</strong> — significantly fewer than the 1,115,394 character count — demonstrating BPE's compression benefit (~2.5 characters per token).</p>
+<p><strong>Sequence Formatting:</strong> The token stream was split into overlapping fixed-length sequences of 50 tokens using a stride of 10. For each sequence, the input is tokens [i : i+50] and the target is tokens [i+1 : i+51], enabling next-token prediction. Overlapping sequences (stride &lt; seq_len) expose the model to more diverse context windows and significantly increase training data volume. This produced <strong>44,747 total sequences</strong> — approximately 5× more than non-overlapping chunking.</p>
+<p><strong>Data Split:</strong> 80% training (35,797 sequences) and 20% validation (8,950 sequences). DataLoader used batch_size=32, shuffle=True for training, shuffle=False for validation.</p>
+<h2 id="3-model-architecture">3. Model Architecture</h2>
+<p>The model is a <strong>decoder-only Transformer</strong> (similar in spirit to GPT), processing tokens left-to-right with causal masking. The full forward pass is:</p>
+<pre class="hljs"><code><div>Input tokens [batch=32, seq=50]
+    → Token Embedding       [32, 50, 64]
+    → + Positional Encoding [32, 50, 64]
+    → TransformerBlock × 2  [32, 50, 64]
+    → RMSNorm               [32, 50, 64]
+    → Linear head           [32, 50, 500]
+</div></code></pre>
+<p><strong>Token Embedding:</strong> <code>nn.Embedding(500, 64)</code> maps each token ID to a 64-dimensional learned float vector, updated during training so semantically similar tokens converge to nearby regions of embedding space.</p>
+<p><strong>Sinusoidal Positional Encoding:</strong> Self-attention is permutation-invariant — without position information the model cannot distinguish &quot;the king speaks&quot; from &quot;speaks the king.&quot; Sinusoidal encodings inject position information by adding fixed vectors to token embeddings: PE(pos, 2i) = sin(pos / 10000^(2i/d)) and PE(pos, 2i+1) = cos(pos / 10000^(2i/d)). Each position gets a unique signature across the 64 dimensions.</p>
+<p><strong>Self-Attention with Causal Mask:</strong> Each block computes Q, K, V as linear projections of the input, then: scores = QKᵀ / √64, followed by a causal mask setting scores[i,j] = -∞ for j &gt; i, then softmax and weighted sum of V. The mask ensures each token only attends to past tokens, enforcing autoregressive generation.</p>
+<p><strong>Feed-Forward Network:</strong> A position-wise two-layer MLP: <code>Linear(64→128) → ReLU → Linear(128→64)</code>. The 2× expansion allows the model to capture non-linear feature interactions.</p>
+<p><strong>RMSNorm + Residual Connections:</strong> Pre-norm residuals: <code>x = x + sublayer(RMSNorm(x))</code>. RMSNorm normalizes by root mean square without subtracting the mean — simpler than LayerNorm and used in modern architectures (LLaMA, Mistral). Residuals allow gradients to flow directly through the network.</p>
+<p><strong>Output Head:</strong> <code>Linear(64→500)</code> projects each token's hidden state to 500 vocabulary logits.</p>
+<p><strong>Total parameters: ~500K</strong> — lightweight enough to train on CPU in under 30 minutes.</p>
+<h2 id="4-training">4. Training</h2>
+<p><strong>Setup:</strong> Cross-entropy loss, Adam optimizer (lr=1e-3), 30 epochs, random seed=42 for reproducibility.</p>
+<p><img src="file:///Users/shreyarora/Desktop/Columbia_Courses/Spring 2026/AML/aml_assignment3/image.png" alt="alt text"></p>
+<p><em>Figure 1: Training and validation loss over 30 epochs.</em></p>
+<table>
+<thead>
+<tr>
+<th>Epoch</th>
+<th>Train Loss</th>
+<th>Val Loss</th>
+<th>Val PPL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>4.45</td>
+<td>4.41</td>
+<td>82.3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3.55</td>
+<td>4.23</td>
+<td>68.7</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3.40</td>
+<td>4.21</td>
+<td>67.4</td>
+</tr>
+<tr>
+<td>20</td>
+<td>3.29</td>
+<td>4.22</td>
+<td>68.0</td>
+</tr>
+<tr>
+<td>30</td>
+<td>3.24</td>
+<td>4.24</td>
+<td>69.5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Final Validation Perplexity: 69.51</strong> — computed as exp(4.244). This means the model is on average uncertain between ~70 equally likely next tokens. For context: a random model over vocab=500 yields PPL=500, while GPT-2 achieves PPL≈20-30 on similar data. The gap is expected — our model has ~500K parameters vs GPT-2's 117M. With 5× more training data from overlapping sequences (44,747 vs 8,950), perplexity improved modestly compared to the non-overlapping baseline (70.83).</p>
+<p><strong>Training dynamics:</strong> Train loss decreased steadily across all 30 epochs from 4.45 to 3.24. Val loss converged rapidly by epoch 10 (4.21) and plateaued thereafter, with minor fluctuations around 4.22-4.24 — indicating the model reached its capacity limit early. The overlapping sequence construction provides richer training signal since each token appears in multiple context windows, contributing to the faster early convergence compared to the non-overlapping setup.</p>
+<h2 id="5-attention-visualization--analysis">5. Attention Visualization &amp; Analysis</h2>
+<p>Attention weights were extracted from both Transformer blocks for a sample validation sequence beginning with subword tokens: <code>&quot;? O per il ous m ou th s That be ar in them one and the self...&quot;</code>.</p>
+<p><img src="file:///Users/shreyarora/Desktop/Columbia_Courses/Spring 2026/AML/aml_assignment3/image-1.png" alt="alt text"></p>
+<p><em>Figure 2: Attention heatmap — Block 1. Rows = query tokens (attending), columns = key tokens (attended to).</em></p>
+<p><img src="file:///Users/shreyarora/Desktop/Columbia_Courses/Spring 2026/AML/aml_assignment3/image-2.png" alt="alt text"></p>
+<p><em>Figure 3: Attention heatmap — Block 2.</em></p>
+<p><strong>1. Causal (lower-triangular) structure:</strong> The upper triangle of both heatmaps is entirely zero — the causal mask functions correctly. Token at position i attends only to positions ≤ i.</p>
+<p><strong>2. Strong diagonal dominance:</strong> Both blocks show peak attention on the diagonal — each token attends most strongly to itself. One plausible interpretation is that in a small single-head model with limited capacity, the attention mechanism has not learned to strongly differentiate between attending to self versus neighbors, defaulting to near-identity behavior. However, since attention weights are learned, this pattern could also reflect a genuine signal: the current token's representation is the most useful context for predicting the next token at this stage of training. Either way, the diagonal bias is a commonly observed phenomenon in shallow attention models.</p>
+<p><strong>3. Local neighborhood clusters:</strong> Attention spreads to immediately adjacent tokens (positions i-1, i-2). The token &quot;That&quot; attends to preceding punctuation and nearby subword pieces, capturing local syntactic context. This local bias is expected in shallow 2-block models — deeper models develop longer-range dependencies.</p>
+<p><strong>4. Connector tokens attend more broadly:</strong> Tokens like &quot;and&quot;, &quot;the&quot;, and &quot;of&quot; show more distributed attention compared to content words, consistent with their role as contextual connectors.</p>
+<p><strong>5. Block 1 vs Block 2:</strong> Block 1 shows sharper diagonal-concentrated attention, identifying immediate neighbors. Block 2 shows slightly more distributed weights spreading 2-3 positions back, suggesting the second layer builds on Block 1's local patterns to capture broader context.</p>
+<p><strong>6. Subword fragmentation:</strong> BPE splits rare words into pieces (e.g., &quot;perilous&quot; → [&quot;per&quot;, &quot;il&quot;, &quot;ous&quot;]). These fragments attend strongly to each other in the heatmap — an emergent behavior where the model re-assembles split words through attention.</p>
+<h2 id="6-discussion--reflection">6. Discussion &amp; Reflection</h2>
+<p><strong>Attention patterns:</strong> The dominant pattern is diagonal self-attention with local clusters. The model has not developed long-range attention — tokens rarely attend beyond 3-4 positions back. This reflects limited depth (2 blocks) and width (embed_dim=64). Larger models like GPT-2 (12 blocks, embed_dim=768) develop head specialization with syntactic and semantic attention heads — behaviors this tiny model cannot support.</p>
+<p><strong>Hyperparameter impact:</strong> <code>embed_dim=64</code> had the greatest impact as the bottleneck through which all information flows in Q, K, V projections. A larger embed_dim (128 or 256) would provide more expressive capacity. Learning rate (1e-3) was stable — Adam's adaptive moments absorb sensitivity. <code>seq_len=50</code> was sufficient for short utterances but insufficient for scene-level structure.</p>
+<p><strong>Sequence stride experiment:</strong> Two configurations were compared. Non-overlapping sequences (stride=50) produced 8,950 training sequences and final PPL=70.83. Overlapping sequences (stride=10) produced 44,747 sequences and final PPL=69.51. The improvement is modest (~2%) because the model's capacity (embed_dim=64, 2 blocks) is the binding constraint — more data helps but cannot overcome architectural limits. The best val loss occurred at epoch 10 (PPL=67.4) in both runs, after which the model plateaued, confirming that capacity rather than data quantity is the bottleneck.</p>
+<p><strong>Attention evolution during training:</strong> Early training (PPL≈144) shows nearly uniform attention — no strong preferences. As training progresses the diagonal sharpens, reflecting the learned signal that a token's own embedding predicts its context best. By epoch 30 the local cluster pattern stabilizes, capturing n-gram-like statistics.</p>
+<p><strong>Role of positional encodings:</strong> Without them, self-attention is permutation-invariant — identical outputs for any token ordering. The model could not learn subject-verb order or Shakespeare's dialogue structure (character name → colon → speech). Sinusoidal encodings give each position a unique fingerprint, enabling order-dependent pattern learning.</p>
+<p><strong>Runtime and memory:</strong> The dominant bottleneck is the attention score matrix (O(n²) in sequence length): <code>Q @ Kᵀ</code> produces [32, 50, 50] per block — trivial at seq_len=50 but expensive at GPT-2's seq_len=1024. Each epoch took ~30-60 seconds on CPU. Total model size ~2MB.</p>
+<p><strong>Text generation:</strong> With temperature sampling (T=0.8), the model generated: <em>&quot;To be or not I . RO S I R S E P R INC E : W hi le an I . To heart is a ble to stand ' d Rome o p in ion where in of this de ed . RO M E O : Come , let them on&quot;</em>. This output exhibits several interesting properties: the model correctly generates Shakespeare-style character headers (&quot;PRINCE:&quot;, &quot;ROMEO:&quot;), uses Elizabethan vocabulary (&quot;whereof&quot;, &quot;deed&quot;, &quot;stand&quot;), and produces dialogue-like structure. However, subword fragmentation from BPE (e.g., &quot;R INC E&quot; for &quot;RINCE&quot;, &quot;a ble&quot; for &quot;able&quot;) disrupts readability, and grammatical coherence breaks beyond a few tokens. This confirms the model learned high-level structural patterns (dialogue format, character names) and vocabulary statistics, but not long-range syntactic dependencies.</p>
+<h2 id="7-ai-tool-usage-disclosure">7. AI Tool Usage Disclosure</h2>
+<p>This assignment was completed with significant assistance from Claude (Anthropic's AI assistant, Claude Code), which served as an interactive tutor — explaining concepts (self-attention, RMSNorm, BPE, PyTorch broadcasting), identifying bugs, and guiding architecture decisions step by step.</p>
+<p><strong>Personal contributions:</strong> Writing all code through guided Q&amp;A (not copy-pasting); running all experiments; providing the conceptual observations behind the discussion section; making hyperparameter decisions.</p>
+<p><strong>Claude's contributions:</strong> Explaining concepts; identifying syntax/logic bugs; structuring the report from my answers; providing benchmark comparisons.</p>
+<p>The analysis reflects understanding developed through hands-on implementation, with Claude helping formalize observations made during experimentation.</p>
+
+</body>
+</html>
