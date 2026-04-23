@@ -4,6 +4,8 @@
 
 This report describes the implementation and analysis of a Tiny Transformer language model trained on the Tiny Shakespeare corpus for next-token prediction. The model was built entirely from scratch using PyTorch, implementing all core components of the Transformer architecture: sinusoidal positional encoding, causal masked self-attention, RMSNorm, feed-forward networks, and residual connections. The goal was to understand the internal mechanics of modern Large Language Models by building and training a minimal version from the ground up.
 
+**GitHub Repository:** [transformer.ipynb](https://github.com/shreyarora2198/aml_assignments/blob/main/aml_assignment3/transformer.ipynb)
+
 ## 2. Data Preparation
 
 **Dataset:** The Tiny Shakespeare corpus (~1.1M characters) consisting of Shakespeare play dialogue with character names, speech, and stage directions.
